@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="S3ImagesMauiPOC.BucketsPage"
+             Title="Buckets Page"   
+             x:Name="Buckets"
+             xmlns:viewmodel="clr-namespace:S3ImagesMauiPOC.ViewModels"
+             x:DataType="viewmodel:BucketsViewModel">
+    <ScrollView Margin="20">
+
+        <VerticalStackLayout>
+            <Label 
+                Text="My Buckets"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+
+            <CollectionView ItemsSource="{Binding Buckets}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout VerticalOptions="Center" Margin="24">
+                            <Button Text="{Binding .}" Padding="24"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BucketsViewModel}}, Path=GoToBucketCommand}"
+                                 CommandParameter="{Binding .}"/>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
